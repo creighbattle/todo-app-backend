@@ -1,4 +1,6 @@
-node_modules
+node_modules/
 database.sql
 yarn-error.log
 .env
+.DS_Store
+client/
