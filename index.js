@@ -6,6 +6,8 @@ const path = require("path");
 const client = require("./db");
 const PORT = process.env.PORT || 5000;
 
+client.connect();
+
 //process.env.PORT
 //process.env.NODE_ENV => production or undefined
 
@@ -44,7 +46,6 @@ app.post("/todos", async (req, res) => {
 
 app.get("/todos", async (req, res) => {
   try {
-    await client.connect();
     const allTodos = await client.query("SELECT * FROM todo");
     console.log(`no erros + ${allTodos}`);
     await client.end();
