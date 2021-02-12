@@ -27,16 +27,16 @@ app.use(express.json()); //req.body
 
 app.post("/todos", async (req, res) => {
   try {
-    // const { description } = req.body;
+    const { description } = req.body;
 
-    // const newTodo = await pool.query(
-    //   "INSERT INTO todo (description) VALUES($1) RETURNING *",
-    //   [description]
-    // );
+    const newTodo = await client.query(
+      "INSERT INTO todo (description) VALUES($1) RETURNING *",
+      [description]
+    );
 
-    //res.json(newTodo.rows[0]);
+    res.json(newTodo.rows[0]);
 
-    res.send("<h1>Hello</h1>");
+    //res.send("<h1>Hello</h1>");
   } catch (error) {
     console.log(error);
   }
@@ -48,8 +48,8 @@ app.get("/todos", async (req, res) => {
   try {
     const allTodos = await client.query("SELECT * FROM todo");
     //console.log(`no erros + ${allTodos}`);
-    //res.json(allTodos.rows);
-    res.send(`<h1>Working + ${allTodos}</h1>`);
+    res.json(allTodos.rows);
+    //res.send(`<h1>Working + ${allTodos}</h1>`);
   } catch (error) {
     console.log(error);
   }
