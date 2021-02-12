@@ -47,9 +47,9 @@ app.post("/todos", async (req, res) => {
 app.get("/todos", async (req, res) => {
   try {
     const allTodos = await client.query("SELECT * FROM todo");
-    console.log(`no erros + ${allTodos}`);
+    //console.log(`no erros + ${allTodos}`);
     //res.json(allTodos.rows);
-    res.send("<h1>Working</h1>");
+    res.send(`<h1>Working + ${allTodos}</h1>`);
   } catch (error) {
     console.log(error);
   }
