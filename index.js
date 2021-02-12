@@ -12,11 +12,11 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json()); //req.body
 
-if (process.env.NODE_ENV === "production") {
-  //server static content
-  //npm run build
-  app.use(express.static(path.join(__dirname, "client/build")));
-}
+// if (process.env.NODE_ENV === "production") {
+//   //server static content
+//   //npm run build
+//   app.use(express.static(path.join(__dirname, "client/build")));
+// }
 
 //Routes
 
@@ -24,14 +24,16 @@ if (process.env.NODE_ENV === "production") {
 
 app.post("/todos", async (req, res) => {
   try {
-    const { description } = req.body;
+    // const { description } = req.body;
 
-    const newTodo = await pool.query(
-      "INSERT INTO todo (description) VALUES($1) RETURNING *",
-      [description]
-    );
+    // const newTodo = await pool.query(
+    //   "INSERT INTO todo (description) VALUES($1) RETURNING *",
+    //   [description]
+    // );
 
-    res.json(newTodo.rows[0]);
+    //res.json(newTodo.rows[0]);
+
+    res.send("<h1>Hello</h1>");
   } catch (error) {
     console.log(error);
   }
