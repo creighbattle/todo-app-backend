@@ -1,4 +1,4 @@
-const Pool = require("pg").Pool;
+const Client = require("pg").Client;
 
 const devConfig = {
   user: "postgres",
@@ -9,10 +9,11 @@ const devConfig = {
 };
 const proConfig = process.env.DATABASE_URL;
 
-const pool = new Pool(
-  process.env.NODE_ENV === "production" ? proConfig : devConfig
-);
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
 
-pool.connect();
-
-module.exports = pool;
+module.exports = client;
