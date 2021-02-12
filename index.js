@@ -47,6 +47,7 @@ app.get("/todos", async (req, res) => {
     //res.json(allTodos.rows);
     res.send("<h1>Working</h1>");
     console.log(`no erros + ${allTodos}`);
+    pool.end();
   } catch (error) {
     console.log(error);
   }
