@@ -46,10 +46,10 @@ app.get("/todos", async (req, res) => {
   try {
     await client.connect();
     const allTodos = await client.query("SELECT * FROM todo");
-    //res.json(allTodos.rows);
-    res.send("<h1>Working</h1>");
     console.log(`no erros + ${allTodos}`);
     client.end();
+    //res.json(allTodos.rows);
+    res.send("<h1>Working</h1>");
   } catch (error) {
     console.log(error);
   }
